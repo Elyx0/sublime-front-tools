@@ -1,0 +1,28 @@
+{% extends "layouts/site.html" %}
+
+{% import 'macros/utils.html' as utils %}
+
+{#
+{% helpers ['[[full_name]]_helper'] %}
+#}
+
+{% block title %}Dailymotion - {% trans %}[[full_name]]{% endtrans %}{% endblock %}
+
+
+{% block css %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ css_pack_url('[[css_url]]') }}">
+{% endblock %}
+
+{% block scripts_bottom %}
+<script type="text/javascript" src="{{ js_pack_url('[[js_url]]') }}"></script>
+{% endblock %}
+
+
+{# BODY CLASS DEFINITION #}
+{% block body_class %}{{ parent() }}[[css_class_name]]{% endblock %}
+
+{# PAGE CONTENT #}
+{% block content %}
+    {# Your content here #}
+{% endblock %}

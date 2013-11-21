@@ -1,0 +1,6 @@
+[
+    { "keys": ["alt+j", "alt+s"], "command": "daily_switch_to", "args": { "destination_type": "js"} },
+    { "keys": ["alt+h", "alt+t"], "command": "daily_switch_to", "args": { "destination_type": "html"} },
+    { "keys": ["alt+c", "alt+s"], "command": "daily_switch_to", "args": { "destination_type": "css"} },
+    { "keys": ["alt+c", "alt+o"], "command": "daily_switch_to", "args": { "destination_type": "controllers"} }
+]

@@ -1,0 +1,10 @@
+[
+	{ "caption": "-" , "id":"side-bar-end-separator"},
+	{ "caption": "Daily Front Tools", "id": "daily_front_tools",
+	"children":
+	[
+		{ "caption": "Create Controller + Bundle (HTML & JS & CSS)", "command": "daily_create_controller_all", "args": {"dirs": []} }
+	]
+	},
+	{ "caption": "-" , "id":"side-bar-end-separator"}
+]
