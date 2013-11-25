@@ -7,7 +7,7 @@ import re
 main_dailymotion_folder = 'dailymotion'
 main_dailymotion_controller = {'1': {'prefix': 'Pg', 'controller_path': 'Page'}, '2': {'prefix': 'Sd', 'controller_path': 'Shared'}}
 
-from dailytools import DailyTools
+from SideBarDaily.dailytools import DailyTools
 
 # Support Long path with /
 # ?
@@ -17,13 +17,13 @@ def parseint(string):
 
 class Example2Command(sublime_plugin.TextCommand):
     def run(self, edit):
-        print "Coucou"
+        print("Coucou")
         DailyTools().test()
 
 
 class DailyGoTo:
     def js(self,path):
-        print "To continue"
+        print("To continue")
 
 
 class DailyViewTools():
@@ -67,7 +67,7 @@ class DailyViewTools():
     def prompt(self, message, default, function, arg1):
         import functools
         sublime.active_window().run_command('hide_panel')
-        sublime.active_window().show_input_panel(message.decode('utf-8'), default.decode('utf-8'), functools.partial(function, arg1, True), None, None)
+        sublime.active_window().show_input_panel(message, default, functools.partial(function, arg1, True), None, None)
 
 
 class DailyCreateJsCssCommand(sublime_plugin.WindowCommand):
@@ -82,7 +82,7 @@ class DailyCreateJsCssCommand(sublime_plugin.WindowCommand):
             base_path = os.path.dirname(os.path.dirname(folder_path))
             for i in ['js', 'css']:
                 new_path = os.path.join(base_path, i, 'views', folder_name, folder_name + '.' + i)
-                print new_path
+                print(new_path)
                 if not os.path.exists(os.path.dirname(new_path)):
                     os.makedirs(os.path.dirname(new_path))
                 if not os.path.exists(new_path):
@@ -120,20 +120,20 @@ class DailyCreateControllerAllCommand(sublime_plugin.WindowCommand):
             DailyViewTools().prompt('Enter controller path/name (e.g. Kids/KidsUserHome --creates--> controllers/' + prefix + '/Kids/KidsUserHomeController.php)', '', self.askControllerName, path_infos)
         else:
             if re.match(r'^[A-Z][a-z]+([A-Z][a-z]+)*(\/[A-Z][a-z]+([A-Z][a-z]+)*)*$',content):
-                print "Passing regex path"
+                print("Passing regex path")
                 base_path = path_infos[0]
                 new_file = os.path.join(base_path,'controllers',prefix,content + 'Controller.php')
-                print "Path: " + new_file
+                print("Path: " + new_file)
                 DailyTools().createBasicTemplate(new_file,path_infos)
                 # Now creating css/js/html
                 # --------=-
                 self.createHtmlJsCss(content,path_infos,new_file)
             else:
-                print content + ' <==> Failed Regex Pass'
+                print(content + ' <==> Failed Regex Pass')
                 DailyViewTools().prompt('Enter controller path/name (e.g. Kids/KidsUserHome)', '', self.askControllerName, path_infos)
 
     def createHtmlJsCss(self,content,path_infos,initial_controller):
-        print path_infos
+        print(path_infos)
         lower_content = content.lower()
         for i in ['views','js','css']:
             shared_prefix = ''
@@ -143,5 +143,5 @@ class DailyCreateControllerAllCommand(sublime_plugin.WindowCommand):
             base_appendix = 'views' if not i == 'views' else ''
             new_file = os.path.join(path_infos[0], i, base_appendix, shared_prefix, lower_content, lower_content.rpartition('/')[2] + '.' + appendix)
 
-            print "Additional ---> " + new_file
+            print("Additional ---> " + new_file)
             DailyTools().createBasicTemplate(new_file,path_infos,initial_controller)
